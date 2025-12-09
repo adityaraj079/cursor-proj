@@ -37,6 +37,8 @@ An AI-powered web application that helps job seekers determine whether they shou
 
 ### Local Development
 
+#### For Vercel Deployment (Web App)
+
 1. **Clone or download this repository**
 
 2. **Install the required dependencies**:
@@ -53,6 +55,20 @@ An AI-powered web application that helps job seekers determine whether they shou
    ```bash
    cd public && python -m http.server 8000
    ```
+
+#### For Legacy Streamlit App
+
+1. **Install dependencies for Streamlit**:
+   ```bash
+   pip install -r requirements-local.txt
+   ```
+
+2. **Run the Streamlit application**:
+   ```bash
+   streamlit run app.py
+   ```
+
+**Note**: `requirements.txt` contains only the minimal dependencies needed for Vercel deployment (just `openai`). `requirements-local.txt` includes additional dependencies like `streamlit` for local development of the legacy app.
 
 ## Usage
 
@@ -83,13 +99,14 @@ An AI-powered web application that helps job seekers determine whether they shou
 ```
 cursor-proj/
 ├── api/
-│   └── analyze.py     # Vercel serverless function (Python)
+│   └── analyze.py          # Vercel serverless function (Python)
 ├── public/
-│   └── index.html     # Frontend web application
-├── app.py             # Original Streamlit app (legacy)
-├── requirements.txt   # Python dependencies
-├── vercel.json        # Vercel configuration
-└── README.md          # This file
+│   └── index.html          # Frontend web application
+├── app.py                  # Original Streamlit app (legacy)
+├── requirements.txt        # Minimal dependencies for Vercel (openai only)
+├── requirements-local.txt  # Full dependencies for local Streamlit development
+├── vercel.json             # Vercel configuration
+└── README.md               # This file
 ```
 
 ## Technologies Used

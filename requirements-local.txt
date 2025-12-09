@@ -1,0 +1,7 @@
+# Requirements for local development (Streamlit app)
+# This file is NOT used by Vercel deployment
+# Install with: pip install -r requirements-local.txt
+
+openai>=2.0.0
+streamlit==1.28.0
+python-dotenv==1.0.0
