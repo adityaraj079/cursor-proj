@@ -13,11 +13,22 @@ def get_openrouter_client(api_key=None):
     
     # OpenRouter uses OpenAI-compatible API
     # For free models, we need to set custom headers
+    # VERCEL_URL contains only the domain (e.g., "my-app.vercel.app")
+    # We need to ensure it has the https:// protocol prefix
+    vercel_url = os.getenv("VERCEL_URL", "")
+    if vercel_url:
+        # Ensure protocol prefix is present
+        if not vercel_url.startswith("http://") and not vercel_url.startswith("https://"):
+            vercel_url = f"https://{vercel_url}"
+    else:
+        # Fallback to a default URL with protocol
+        vercel_url = "https://your-app.vercel.app"
+    
     return OpenAI(
         api_key=api_key,
         base_url="https://openrouter.ai/api/v1",
         default_headers={
-            "HTTP-Referer": os.getenv("VERCEL_URL", "https://your-app.vercel.app"),
+            "HTTP-Referer": vercel_url,
             "X-Title": "Job Application Analyzer"
         }
     )
